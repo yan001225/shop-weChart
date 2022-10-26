@@ -1,24 +1,8 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-  {{ userInfo }}
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="home">
+  <view class="navbar" style="padding-top:{{statusBarHeight}}">
+    <image class="avatar" src="/assets/images/mine/default.png" wx:if="{{ !isUserInfo }}"></image>
+    <image class="avatar" wx:else  src="{{ userInfo.avatarUrl }}"></image>
+    <view class="city">上海市</view>
+    <!-- <input class="search" type="text" placeholder="请输入内容" /> -->
   </view>
 </view>

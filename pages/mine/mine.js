@@ -5,20 +5,76 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusBarHeight:'', // 状态栏高度
-    navigationHeight : '', // 状态栏 + 导航栏 高度
+    statusBarHeight: '', // 状态栏高度
+    navigationHeight: '', // 状态栏 + 导航栏 高度
     userInfo: {},
     hasUserInfo: false,
+    cardList: [{
+        id: 1,
+        title: '代付款',
+        img: '/assets/images/mine/card2.png'
+      },
+      {
+        id: 2,
+        title: '代发货',
+        img: '/assets/images/mine/card1.png'
+      },
+      {
+        id: 3,
+        title: '代收货',
+        img: '/assets/images/mine/card4.png'
+      },
+      {
+        id: 4,
+        title: '代评价',
+        img: '/assets/images/mine/card3.png'
+      },
+      {
+        id: 5,
+        title: '已完成',
+        img: '/assets/images/mine/card5.png'
+      },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getSystemInto();
-    // console.log(wx.getUserProfile, '-----')
-  }, 
-  
+    this.getStorageUserInfo()
+  },
+
+  // 获取本地存储的值
+  getStorageUserInfo: function() {
+    wx.getStorage({
+      key:'userInfo',
+      success:(res) => {
+        console.log(res)
+        if(res) {
+          this.setData({
+            hasUserInfo: true,
+            userInfo: res.data
+          })
+        }
+      }
+    })
+    
+  },
+
+  // 退出登录
+  loginOut() {
+    wx.removeStorage({
+      key: 'userInfo',
+      success:(res) => {
+        console.log(res)
+        this.setData({
+          userInfo: {},
+          hasUserInfo: false
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -30,7 +86,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getStorageUserInfo()
+    this.getSystemInto();
   },
 
   /**
@@ -68,19 +125,25 @@ Page({
 
   },
   // 获取用户信息
-  getUserInfo: function() {
+  getUserInfo: function () {
     console.log('获取应用实例')
     wx.getUserProfile({
       desc: '用于完善用户信息',
-      success:(res) => {
-        console.log(res)
-        this.setData({
-          hasUserInfo: true,
-          userInfo: res.userInfo
-        })
+      success: (res) => {
+        if (res && res.userInfo) {
+          wx.setStorage({
+            key: 'userInfo',
+            data: res.userInfo
+          })
+          this.setData({
+            hasUserInfo: true,
+            userInfo: res.userInfo
+          })
+        }
+
         console.log(this.data.userInfo)
       },
-      fail:(err) => {
+      fail: (err) => {
         console.log(err)
       }
     })
@@ -89,12 +152,19 @@ Page({
   getSystemInto: function () {
     wx.getSystemInfo({
       success: res => {
-        const statusBarHeight = res.statusBarHeight;
         this.setData({
-          statusBarHeight:statusBarHeight,
-          navigationHeight: (statusBarHeight + 44) + 'px',
+          statusBarHeight:  res.statusBarHeight,
         })
       }
     })
   },
+  // 获取用户授权信息
+  getSetting: function () {
+    wx.getSetting({
+      withSubscriptions: true,
+      success(res) {
+        console.log(res)
+      },
+    })
+  }
 })

@@ -3,17 +3,20 @@
   min-height: 100vh;
   background: rgb(247, 247, 247);
 }
+
 .navbar-contianer {
   width: 100%;
   height: 378rpx;
   background-image: linear-gradient(225deg, #fe3b30 0%, #ff3366 100%);
 }
+
 .navBar {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .navBar .navBar-right {
   display: flex;
   align-items: center;
@@ -21,15 +24,18 @@
   margin-right: 200rpx;
   /* margin: 0 10rpx; */
 }
+
 .navBar-icon {
   margin: 0 10rpx 0 0;
 }
+
 .userInfo {
   display: flex;
   align-items: center;
   padding: 0 24px;
   color: #fff;
 }
+
 .avatar {
   width: 120rpx;
   height: 120rpx;
@@ -37,16 +43,23 @@
   margin-right: 24rpx;
   /* background-color: #0ff; */
 }
+
+.contianer {
+  margin-top: -60rpx;
+  padding: 0 20rpx;
+}
+
 .header-contianer {
-  width:  710rpx;
+  /* width: 710rpx; */
   height: 150rpx;
-  margin: -30px auto;
   background-color: #fff;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
   border-radius: 16rpx;
 }
+
 .header-contianer .item {
   display: flex;
   align-items: center;
@@ -70,4 +83,65 @@
   line-height: 27px;
   letter-spacing: 0px;
   text-align: center;
+}
+
+/* order */
+.order {
+  /* height: 264rpx; */
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+.order .order-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(38, 36, 36);
+  font-family: PingFangSC;
+  font-size: 30rpx;
+  line-height: 44rpx;
+}
+.findAllOrder {
+  color: rgb(102, 98, 98);
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+.order-cards {
+  min-height: 112rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+.order-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.order-card-img {
+  width: 70rpx;
+  height: 70rpx;
+}
+.order-card-name {
+  margin-top: 10px;
+  color: rgb(111, 117, 128);
+  font-family: PingFangSC;
+  font-size: 22rpx;
+  line-height: 32rpx;
+}
+
+.loginOut {
+  margin-top: 60rpx;
+  height: 90rpx;
+  background: linear-gradient(rgba(254,59,48,1) 0%,rgba(255,89,81,1) 100%);
+  border-radius: 22.5px;
+  line-height: 90rpx;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-family: PingFangSC;
+  font-size: 30rpx;
+  /* line-height: 22px; */
 }

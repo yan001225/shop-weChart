@@ -4,35 +4,56 @@
     <view class="navBar" style="height:{{statusBarHeight}}px">
       <view></view>
       <view class="navBar-right">
-        <view class="navBar-icon">设置</view>
-        <view class="navBar-icon">客服</view>
+        <!-- <view class="navBar-icon">设置</view>
+        <view class="navBar-icon">客服</view> -->
       </view>
     </view>
     <!-- 用户信息展示 -->
-    <view class="userInfo" bindtap="getUserInfo">
-      <block wx:if="{{ !hasUserInfo }}">
-        <image class="avatar" src="/assets/images/mine/default.png" mode="cover" />
-        <view>获取头像昵称</view>
+    <view class="userInfo" >
+      <block wx:if="{{ !hasUserInfo }}" >
+        <image bindtap="getUserInfo" class="avatar" src="/assets/images/mine/default.png" mode="cover" />
+        <view bindtap="getUserInfo">获取头像昵称</view>
       </block>
       <block wx:else>
-        <image  class="avatar" src="{{ userInfo.avatarUrl }}" mode="cover"></image>
+        <image class="avatar" src="{{ userInfo.avatarUrl }}" mode="cover"></image>
         <view>{{ userInfo.nickName }}</view>
       </block>
     </view>
   </view>
-   <!-- 账单，消息，关注 -->
-  <view class="header-contianer">
+  <view class="contianer">
+    <!-- 账单，消息，关注 -->
+    <view class="header-contianer">
       <view class="item">
         <view class="num">51</view>
         <view class="title">商品关注</view>
       </view>
       <view class="item">
         <view class="num">51</view>
-        <view class="title">商品关注</view>
+        <view class="title">系统消息</view>
       </view>
-      <view class="item" >
+      <view class="item">
         <view class="num">51</view>
-        <view class="title">商品关注</view>
+        <view class="title">我的账单</view>
       </view>
+    </view>
+    <!-- 订单 -->
+    <view class="order">
+      <view class="order-title">
+        <view>我的订单</view>
+        <view class="findAllOrder">
+          查看全部
+        </view>
+      </view>
+      <view class="order-cards">
+        <view class="order-card" wx:for="{{ cardList }}" wx:key="index">
+          <image class="order-card-img" src="{{ item.img }}"></image>
+          <view class="order-card-name">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 退出登录 -->
+    <view class="loginOut" bindtap="loginOut" wx:if="{{ hasUserInfo }}">
+      退出登录
+    </view>
   </view>
 </view>
